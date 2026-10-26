@@ -1,0 +1,140 @@
+```html
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>جست‌وجوی مواد قانونی</title>
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Tahoma, Arial, sans-serif;
+      background: #f3f5f8;
+      color: #202b3c;
+      line-height: 2;
+    }
+
+    header {
+      background: #17365d;
+      color: white;
+      text-align: center;
+      padding: 30px 15px;
+    }
+
+    header h1 { margin: 0 0 8px; font-size: 25px; }
+    header p { margin: 0; color: #dbe6f5; }
+
+    main {
+      max-width: 800px;
+      margin: 30px auto;
+      padding: 0 16px;
+    }
+
+    .search-box, .result {
+      background: white;
+      padding: 22px;
+      border-radius: 12px;
+      box-shadow: 0 3px 14px #0000000c;
+      margin-bottom: 18px;
+    }
+
+    label { display: block; margin-bottom: 8px; font-weight: bold; }
+
+    input, select, button {
+      width: 100%;
+      padding: 13px;
+      border-radius: 8px;
+      font-family: inherit;
+      font-size: 15px;
+    }
+
+    input, select {
+      border: 1px solid #ccd4df;
+      margin-bottom: 12px;
+      background: white;
+    }
+
+    button {
+      border: 0;
+      background: #1d5da8;
+      color: white;
+      cursor: pointer;
+    }
+
+    button:hover { background: #16477f; }
+
+    .notice {
+      color: #6b7280;
+      font-size: 13px;
+      margin-top: 14px;
+    }
+
+    .result h2 { font-size: 18px; color: #17365d; }
+    .empty { text-align: center; padding: 20px; color: #657184; }
+    footer { text-align: center; padding: 20px; color: #6b7280; font-size: 13px; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>سامانه جست‌وجوی مواد قانونی</h1>
+    <p>جست‌وجو در مواد قوانین و آرای وحدت رویه</p>
+  </header>
+
+  <main>
+    <section class="search-box">
+      <label for="searchType">نوع جست‌وجو</label>
+      <select id="searchType">
+        <option value="all">همه موارد</option>
+        <option value="article">شماره ماده قانونی</option>
+        <option value="decision">شماره رأی وحدت رویه</option>
+      </select>
+
+      <label for="searchInput">عبارت موردنظر</label>
+      <input
+        id="searchInput"
+        type="search"
+        placeholder="مثلاً شماره ماده، شماره رأی یا عبارت قانونی"
+      >
+
+      <button id="searchButton" type="button">جست‌وجو</button>
+
+      <p class="notice">
+        نتایج مرتبط با عبارت جست‌وجوشده نمایش داده خواهند شد.
+      </p>
+    </section>
+
+    <section id="results" aria-live="polite">
+      <div class="empty">برای شروع، عبارت موردنظر را وارد کنید.</div>
+    </section>
+  </main>
+
+  <footer>سامانه جست‌وجوی مواد قانونی و آرای وحدت رویه</footer>
+
+  <script>
+    const input = document.getElementById("searchInput");
+    const button = document.getElementById("searchButton");
+    const results = document.getElementById("results");
+
+    button.addEventListener("click", () => {
+      const query = input.value.trim();
+
+      if (!query) {
+        results.innerHTML =
+          '<div class="empty">لطفاً عبارت موردنظر را وارد کنید.</div>';
+        return;
+      }
+
+      results.innerHTML =
+        '<div class="empty">بخش جست‌وجو آماده اتصال به پایگاه اطلاعات قوانین است. ' +
+        'در این نسخه هنوز اطلاعات واقعی بارگذاری نشده است.</div>';
+    });
+
+    input.addEventListener("keydown", event => {
+      if (event.key === "Enter") button.click();
+    });
+  </script>
+</body>
+</html>
+```
